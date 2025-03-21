@@ -1,0 +1,14 @@
+C:\Users\Arsen\Documents\projects\bin\Debug\net8.0\projects.exe
+C:\Users\Arsen\Documents\projects\bin\Debug\net8.0\projects.deps.json
+C:\Users\Arsen\Documents\projects\bin\Debug\net8.0\projects.runtimeconfig.json
+C:\Users\Arsen\Documents\projects\bin\Debug\net8.0\projects.dll
+C:\Users\Arsen\Documents\projects\bin\Debug\net8.0\projects.pdb
+C:\Users\Arsen\Documents\projects\obj\Debug\net8.0\projects.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Arsen\Documents\projects\obj\Debug\net8.0\projects.AssemblyInfoInputs.cache
+C:\Users\Arsen\Documents\projects\obj\Debug\net8.0\projects.AssemblyInfo.cs
+C:\Users\Arsen\Documents\projects\obj\Debug\net8.0\projects.csproj.CoreCompileInputs.cache
+C:\Users\Arsen\Documents\projects\obj\Debug\net8.0\projects.dll
+C:\Users\Arsen\Documents\projects\obj\Debug\net8.0\refint\projects.dll
+C:\Users\Arsen\Documents\projects\obj\Debug\net8.0\projects.pdb
+C:\Users\Arsen\Documents\projects\obj\Debug\net8.0\projects.genruntimeconfig.cache
+C:\Users\Arsen\Documents\projects\obj\Debug\net8.0\ref\projects.dll
