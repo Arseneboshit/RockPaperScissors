@@ -1,90 +1,102 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Rock Paper Scissors</title>
-</head>
+  </head>
 
-<body>
+  <body>
+    <button id="rock">Rock</button>
+    <button id="paper">Paper</button>
+    <button id="scissors">Scissors</button>
+    <div id="result">Let's play!</div>
+    <div id="score">Score: You 0 - 0 Computer</div>
+
     <script>
-        // random pc choice
-        function getComputerChoice() {
-            const choices = ['rock', 'paper', 'scissors'];
-            return choices[Math.floor(Math.random() * choices.length)];
+      // random pc choice
+      function getComputerChoice() {
+        const choices = ["rock", "paper", "scissors"];
+        return choices[Math.floor(Math.random() * choices.length)];
+      }
+
+      // user choice
+      function getHumanChoice() {
+        let choice = butt("Write: 'Rock' / 'Paper' / 'Scissors'").toLowerCase();
+        const validChoices = ["rock", "paper", "scissors"];
+
+        if (!validChoices.includes(choice)) {
+          console.log(
+            "Error: incorrect input. Please enter Rock, Paper, or Scissors."
+          );
+          return null; // Возвращает null при неверном вводе
+        }
+        return choice;
+      }
+
+      // fun for 1 round
+      document
+        .getElementById("rock")
+        .addEventListener("click", () =>
+          playRound("rock", getComputerChoice())
+        );
+      document
+        .getElementById("paper")
+        .addEventListener("click", () =>
+          playRound("paper", getComputerChoice())
+        );
+      document
+        .getElementById("scissors")
+        .addEventListener("click", () =>
+          playRound("scissors", getComputerChoice())
+        );
+
+      let humanScore = 0;
+      let computerScore = 0;
+
+      function playRound(humanChoice, computerChoice) {
+        let resultText = "";
+
+        if (humanChoice === computerChoice) {
+          resultText = `It's a tie! Both chose ${humanChoice}.`;
+        } else if (
+          (humanChoice === "rock" && computerChoice === "scissors") ||
+          (humanChoice === "paper" && computerChoice === "rock") ||
+          (humanChoice === "scissors" && computerChoice === "paper")
+        ) {
+          resultText = `You win! ${humanChoice} beats ${computerChoice}.`;
+          humanScore++;
+        } else {
+          resultText = `Computer wins! ${computerChoice} beats ${humanChoice}.`;
+          computerScore++;
         }
 
-        // user choice
-        function getHumanChoice() {
-            let choice = prompt("Write: 'Rock' / 'Paper' / 'Scissors'").toLowerCase();
-            const validChoices = ['rock', 'paper', 'scissors'];
+        // Обновляем текст на странице
+        document.querySelector("#result").innerText = resultText;
+        document.querySelector(
+          "#score"
+        ).innerText = `Score: You ${humanScore} - ${computerScore} Computer`;
 
-            if (!validChoices.includes(choice)) {
-                console.log("Error: incorrect input. Please enter Rock, Paper, or Scissors.");
-                return null; // Возвращает null при неверном вводе
-            }
-            return choice;
+        // Проверяем победителя
+        if (humanScore === 5) {
+          document.querySelector("#result").innerText = "🎉 You won the game!";
+          disableButtons();
+        } else if (computerScore === 5) {
+          document.querySelector("#result").innerText =
+            "💻 Computer wins the game!";
+          disableButtons();
         }
+      }
 
-        // fun for 1 round
-        function playRound(humanChoice, computerChoice) {
-            if (humanChoice === computerChoice) {
-                console.log(`It's a tie! Both chose ${humanChoice}.`);
-                return "tie";
-            } else if (
-                (humanChoice === "rock" && computerChoice === "scissors") ||
-                (humanChoice === "paper" && computerChoice === "rock") ||
-                (humanChoice === "scissors" && computerChoice === "paper")
-            ) {
-                console.log(`You win! ${humanChoice} beats ${computerChoice}.`);
-                return "human";
-            } else {
-                console.log(`Computer wins! ${computerChoice} beats ${humanChoice}.`);
-                return "computer";
-            }
-        }
+      // Отключаем кнопки после победы
+      function disableButtons() {
+        document
+          .querySelectorAll("button")
+          .forEach((btn) => (btn.disabled = true));
+      }
 
-        // fun for 5 rounds
-        function playGame() {
-            let humanScore = 0;
-            let computerScore = 0;
-
-            for (let i = 0; i < 5; i++) {
-                console.log(`Round ${i + 1}`);
-                let humanChoice = getHumanChoice();
-                if (!humanChoice) {
-                    console.log("Invalid input, skipping this round.");
-                    continue;
-                }
-                let computerChoice = getComputerChoice();
-                console.log(`You chose: ${humanChoice}`);
-                console.log(`Computer chose: ${computerChoice}`);
-
-                let result = playRound(humanChoice, computerChoice);
-                if (result === "human") {
-                    humanScore++;
-                } else if (result === "computer") {
-                    computerScore++;
-                }
-
-                console.log(`Score: You ${humanScore} - ${computerScore} Computer`);
-                console.log("----------------------------");
-            }
-
-            // winner detector
-            if (humanScore > computerScore) {
-                console.log("Congratulations! You won the game! 🎉");
-            } else if (humanScore < computerScore) {
-                console.log("Computer wins the game. Better luck next time!");
-            } else {
-                console.log("It's a draw! No one wins.");
-            }
-        }
-
-        // start
-        playGame();
+      // start
+      playGame();
     </script>
-</body>
-
+  </body>
 </html>
